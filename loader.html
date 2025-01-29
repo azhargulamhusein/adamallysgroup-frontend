@@ -1,0 +1,25 @@
+<div class="loader_outer"><div><img src="public/images/loader.svg" width="300px"><div class="loader-line"></div></div></div>
+
+<style>
+    .loader_outer{position: fixed; left: 0; right: 0; bottom: 0; top: 0; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; z-index: 9999999;}
+.loader-line {
+    width: 0;
+    height: 21px;
+    background: linear-gradient(to right, #fff, #2e368f);
+    background: #2e368f;
+    background-size: 200% 100%;
+    animation: loading 4s linear infinite;
+    border-radius: 0 0 0px 18px;
+    margin-top: -28px;
+    margin-left: 31px;
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 230px;
+    }
+}
+</style>

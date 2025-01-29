@@ -1,0 +1,16 @@
+.product_services {
+    position: relative;
+    text-transform: uppercase;
+}
+
+.mega_menu {
+    display: none;
+}
+
+.product_services:hover+.mega_menu {
+    display: flex;
+}
+
+.mega_menu:hover {
+    display: flex;
+}
