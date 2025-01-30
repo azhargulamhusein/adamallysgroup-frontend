@@ -16,7 +16,7 @@ export async function POST(req) {
         port: 465,
         secure: true,
         auth: {
-            user: process.env.NEXT_PUBLIC_EMAIL,
+            user: process.env.APP_SMTPPUBLIC_EMAIL,
             pass: process.env.APP_PASSWORD_FOR_EMAIL,
         },
     });
