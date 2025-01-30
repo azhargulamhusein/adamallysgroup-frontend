@@ -55,7 +55,7 @@ export async function POST(req) {
 
     try {
         await transporter.sendMail({
-            from: process.env.NEXT_PUBLIC_EMAIL,
+            from: process.env.APP_SMTPPUBLIC_EMAIL,
             to: `${process.env.NEXT_PUBLIC_EMAIL}, ${email}`,
             //subject: `${name}, ${companyName}`,
             subject: 'New Contact Details on Adamallys Group',
