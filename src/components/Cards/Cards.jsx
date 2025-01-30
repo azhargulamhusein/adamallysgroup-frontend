@@ -51,11 +51,11 @@ const Cards = ({ dark, data }) => {
           className={`font_calibri text-light text-white  inline-block font-light text-lg leading-[26px] ${sustainabilityExpanded ? '' : 'truncate'}`}
           style={{
             whiteSpace: 'wrap',
-            maxHeight: sustainabilityExpanded ? 'none' : '160px',
+           // maxHeight: sustainabilityExpanded ? 'none' : '160px',
             overflow: 'hidden',
             display: '-webkit-box',
             WebkitLineClamp: sustainabilityExpanded ? 'none' : 8,
-            WebkitBoxOrient: 'vertical',
+           // WebkitBoxOrient: 'vertical',
           }}
         >
           {data[0]?.Caption}
@@ -111,11 +111,11 @@ const Cards = ({ dark, data }) => {
           className={`font_calibri text-light ${dark ? 'text-white' : 'text-theme-main'} inline-block font-light text-lg leading-[26px] ${expanded ? '' : 'truncate'}`}
           style={{
             whiteSpace: 'wrap',
-            maxHeight: expanded ? 'none' : '130px',
+           // maxHeight: expanded ? 'none' : '130px',
             overflow: 'hidden',
             display: '-webkit-box',
             WebkitLineClamp: expanded ? 'none' : 5,
-            WebkitBoxOrient: 'vertical',
+           // WebkitBoxOrient: 'vertical',
           }}
         >
           {data[1]?.Caption}
