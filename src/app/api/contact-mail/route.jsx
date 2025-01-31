@@ -13,12 +13,15 @@ export async function POST(req) {
 
     const transporter = nodemailer.createTransport({
         host: process.env.NEXT_PUBLIC_EMAIL_HOST,
-        port: process.env.APP_SMTPPUBLIC_PORT,
+        port: 465,
         secure: true,
         auth: {
-            user: process.env.APP_SMTPPUBLIC_EMAIL,
+            user: process.env.NEXT_PUBLIC_EMAIL,
             pass: process.env.APP_PASSWORD_FOR_EMAIL,
         },
+        tls: {
+            ciphers: "SSLv3",
+        }
     });
 
     const template = `
@@ -55,10 +58,9 @@ export async function POST(req) {
 
     try {
         await transporter.sendMail({
-            from: process.env.APP_SMTPPUBLIC_EMAIL,
+            from: process.env.NEXT_PUBLIC_EMAIL,
             to: `${process.env.NEXT_PUBLIC_EMAIL}, ${email}`,
-            //subject: `${name}, ${companyName}`,
-            subject: 'New Contact Details on Adamallys Group',
+            subject: `${name}, ${companyName}`,
             html: template
         });
         return new NextResponse(
