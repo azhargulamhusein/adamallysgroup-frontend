@@ -5,7 +5,8 @@ const nextConfig = {
     domains: ['s3-alpha-sig.figma.com', 
       "res.cloudinary.com", 
       "adamallys-space.nyc3.digitaloceanspaces.com", 
-      "nyc3.digitaloceanspaces.com"],
+      "nyc3.digitaloceanspaces.com",
+      "adamallys-space.nyc3.cdn.digitaloceanspaces.com"],
   },
 };
 
