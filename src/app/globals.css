@@ -374,7 +374,10 @@ p {
     }
 }
 
+.banner_h2{font-size: 50px;  color: #fff; font-family: Franklin_Gothic_Regular, sans-serif; line-height: 66px; text-transform: uppercase; max-width: 1028px;margin-top: -90px;}
+
 @media(max-width: 768px) {
+  .banner_h2{font-size: 30px; margin: 0; text-align: center; line-height: 46px;}
     .loader_outer img {max-width: 180px;}
     .loader-line {margin-left: 18px;margin-top: -19px;height: 16px;}
     @keyframes loading {

@@ -12,7 +12,7 @@ const Slide = ({ item, Side_Sticky_Links }) => {
         <section className="fullscreen-video-content absolute inset-0">
           <div className="container flex flex-col justify-between mx-auto h-full pb-12 px-3 xl:px-0">
             <div className="opacity-0"></div>
-            <h2 className="md:-mt-[90px] text-[30px] text-center md:text-left slideFade md:leading-[48px] lg:leading-[66px] md:text-[40px] font_franklin lg:text-[50px] text-white max-w-[1028px] uppercase font-normal">
+            <h2 className="banner_h2">
               {item?.title}
             </h2>
             <div className="">
