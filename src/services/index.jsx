@@ -141,7 +141,7 @@ async function getFooter() {
         AdamallysMarineShipChandlingServices: true,
         Buttons: true,
         Side_Sticky_Links: {
-          fields: ["link"],
+          fields: ["link","Caption"],
           populate: {
             Icon: {
               fields: ["url"],
