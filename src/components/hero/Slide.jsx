@@ -23,23 +23,20 @@ const Slide = ({ item, Side_Sticky_Links }) => {
                     {Side_Sticky_Links?.map((item, idx) => (
                       <li key={idx}>
                         <a
-                          thref={item?.link}
                           target={
                             item?.Caption?.toLowerCase() === "phone" ||
                             item?.Caption?.toLowerCase() === "email"
                               ? "_self"
                               : "_blank"
                           }
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            if (
-                              item?.Caption?.toLowerCase() !== "phone" &&
-                              item?.Caption?.toLowerCase() !== "email"
-                            ) {
-                              e.preventDefault();
-                              window.open(item?.link, "_blank");
-                            }
-                          }}
+                          
+                          href={
+                            item?.Caption?.toLowerCase() === "phone"
+                              ? `tel:${item?.link}`
+                              : item?.Caption?.toLowerCase() === "email"
+                              ? `mailto:${item?.link}`
+                              : item?.link
+                          }
                         >
                           <span className='w-6 h-6 bg-white rounded-full flex flex-col border border-[#EDEDED] justify-center items-center'>
                             <Image
