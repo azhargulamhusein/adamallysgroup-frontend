@@ -8,7 +8,7 @@ import { CircularArrowRight } from "../../../public/icons";
 const OtherServices = (props) => {
   const { Services, Image: serviceImage } = props;
 
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -73,11 +73,21 @@ const OtherServices = (props) => {
             Other Services
           </h2>
           <div className="md:w-full h-[1px] bg-gray-500 my-10 hidden md:block" />
-          <div style={{ overflowX: 'hidden', width: '100%' }} className="flex flex-col md:flex-row gap-8 px-[18px] xl:px-0">
+          <div
+            style={{ overflowX: "hidden", width: "100%" }}
+            className="flex flex-col md:flex-row gap-8 px-[18px] xl:px-0"
+          >
             <div className="md:w-full">
               {Services?.map((item, index) => (
-                <div key={index} className="flex items-center service-item mx-1 group text-center  md:text-left">
-                  <div className={` ${index + 1 === Services?.length ? "" : "mb-[44px]"}`}>
+                <div
+                  key={index}
+                  className="flex items-center service-item mx-1 group text-center  md:text-left"
+                >
+                  <div
+                    className={` ${
+                      index + 1 === Services?.length ? "" : "mb-[44px]"
+                    }`}
+                  >
                     <h3 className="text-[25px] md:text-[40px] text-white font_franklin md:leading-[45px]">
                       {item?.Title}
                     </h3>
