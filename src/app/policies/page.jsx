@@ -6,22 +6,39 @@ import { Axios } from "@/config/Axios";
 export const metadata = {
   title: "Corporate Policies | Adamallys LLC",
   description:
-    "Explore the corporate policies of Adamallys LLC, covering quality, health and safety, environmental responsibility, inclusion and ethical business practices.",
+    "Corporate policies of Adamallys LLC covering quality, safety, environmental responsibility, diversity and ethical business practices.",
 };
 
 async function getCorporatePolicies() {
   const params = qs.stringify({
     populate: ["document"],
     sort: ["displayOrder:asc", "title:asc"],
-    pagination: { pageSize: 100 },
+    pagination: {
+      pageSize: 100,
+    },
   });
 
   try {
     const response = await Axios(`/corporate-policies?${params}`);
-    return response?.data || [];
+    return Array.isArray(response?.data) ? response.data : [];
   } catch (error) {
-    console.error("Unable to load corporate policies", error);
+    console.error("Unable to retrieve corporate policies:", error);
     return [];
+  }
+}
+
+function getDocumentUrl(document) {
+  const url = document?.url;
+
+  if (!url) return null;
+
+  try {
+    return new URL(
+      url,
+      process.env.NEXT_PUBLIC_BACKEND_PUBLIC_BASE_URL
+    ).toString();
+  } catch {
+    return null;
   }
 }
 
@@ -38,10 +55,6 @@ export default async function PoliciesPage() {
             Home
           </Link>
           <span className="mx-3">/</span>
-          <Link href="/certification" className="hover:underline">
-            Standards & Innovation
-          </Link>
-          <span className="mx-3">/</span>
           <span>Corporate Policies</span>
         </nav>
 
@@ -53,10 +66,10 @@ export default async function PoliciesPage() {
 
         <p className="max-w-4xl text-lg leading-relaxed mb-12">
           Adamallys LLC is committed to maintaining high standards
-          of quality, safety, ethical conduct, environmental
-          responsibility and fair employment practices. Our
-          corporate policies establish the principles and
-          requirements that guide our operations and professional
+          of quality, health and safety, environmental responsibility,
+          ethical conduct and equal opportunity. Our corporate
+          policies establish the principles and requirements
+          governing our business operations and professional
           responsibilities.
         </p>
 
@@ -67,28 +80,29 @@ export default async function PoliciesPage() {
         ) : (
           <div className="max-w-5xl space-y-4">
             {policies.map((policy) => {
-              const item = policy.attributes || policy;
-              const document =
-                item.document?.data?.attributes ||
-                item.document?.attributes ||
-                item.document;
+              const item = policy?.attributes || policy;
 
-              const documentUrl = document?.url;
+              const document =
+                item?.document?.data?.attributes ||
+                item?.document?.attributes ||
+                item?.document;
+
+              const documentUrl = getDocumentUrl(document);
 
               if (!documentUrl) return null;
 
               return (
-                <div
+                <article
                   key={policy.id}
                   className="border border-gray-200 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-5"
                 >
-                  <div>
+                  <div className="flex-1">
                     <h2 className="text-xl font-semibold mb-2">
                       {item.title}
                     </h2>
 
                     {item.description && (
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 leading-relaxed">
                         {item.description}
                       </p>
                     )}
@@ -102,7 +116,7 @@ export default async function PoliciesPage() {
                   >
                     View Policy PDF
                   </a>
-                </div>
+                </article>
               );
             })}
           </div>
