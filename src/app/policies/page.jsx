@@ -20,10 +20,17 @@ async function getCorporatePolicies() {
 
   try {
     const response = await Axios(`/corporate-policies?${params}`);
-    return Array.isArray(response?.data) ? response.data : [];
+
+    if (response?.error || !Array.isArray(response?.data)) {
+      throw new Error(
+        response?.error?.message || "Invalid policies API response"
+      );
+    }
+
+    return response.data;
   } catch (error) {
     console.error("Unable to retrieve corporate policies:", error);
-    return [];
+    return null;
   }
 }
 
@@ -33,10 +40,14 @@ function getDocumentUrl(document) {
   if (!url) return null;
 
   try {
-    return new URL(
+    const resolved = new URL(
       url,
       process.env.NEXT_PUBLIC_BACKEND_PUBLIC_BASE_URL
-    ).toString();
+    );
+
+    return ["http:", "https:"].includes(resolved.protocol)
+      ? resolved.toString()
+      : null;
   } catch {
     return null;
   }
@@ -73,7 +84,12 @@ export default async function PoliciesPage() {
           responsibilities.
         </p>
 
-        {policies.length === 0 ? (
+        {policies === null ? (
+          <p role="alert" className="text-gray-600">
+            Policy documents are temporarily unavailable.
+            Please try again later.
+          </p>
+        ) : policies.length === 0 ? (
           <p className="text-gray-600">
             Corporate policy documents will be available here soon.
           </p>
