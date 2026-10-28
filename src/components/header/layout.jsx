@@ -1,3 +1,4 @@
+
 "use client"
 import React from 'react'
 import gsap from 'gsap'
@@ -53,6 +54,10 @@ const menuOptions = [
         label: 'Certification & Membership',
         href: '/certification'
       },
+      {
+        label: 'Corporate Policies',
+        href: '/policies'
+      },
     ]
   },
   {
@@ -76,4 +81,4 @@ const HeaderLayout = ({ data }) => {
   )
 }
 
-export default HeaderLayout
+export default HeaderLayout;
